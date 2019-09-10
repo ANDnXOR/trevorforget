@@ -1,0 +1,56 @@
+/**
+\addtogroup doc_driver_usart_init
+ 
+\brief Driver for USART Initialisation
+
+The **USART Init** driver initializes the USART according
+to the user's data entry in START.
+
+
+\section doc_driver_usart_init_configuration Driver Configuration
+
+The USART Init driver is configured using START. The user can 
+select desired baud rate, character size, number of stop bits, 
+parity, I/O pin mapping etc.
+
+If several USART hardware instances are available on the device, 
+the user can select which USART instance the driver shall use.
+
+
+\section doc_driver_usart_init_functional Functional Description
+
+The Init driver supplies only one function, the init()-function
+automatically called by a call to atmel_start_init() in main().
+
+
+\section doc_driver_usart_init_hardware Hardware Dependencies
+
+The USART Init driver uses some sort of hardware that implements 
+USART functionality.
+
+Different MCUs have USART hardware with different names and 
+functionalities, such as UART, USART, USI etc. In START, the user 
+selects a device and adds the USART Init driver. A device
+may have several possible hardware resources available for 
+the driver, such as USART0, USART1 etc. In this case the user 
+must select which one to use.
+
+The configuration options in START displays options that are 
+dependent on the hardware used to implement the USART driver.
+For example, an option may allow changing the baud rate 
+used to drive the underlying USART hardware.
+
+
+\section doc_driver_usart_init_software Software Dependencies
+
+If configuring the Init driver to have the USART generate interrupts,
+make sure that global interrupts are enabled (using sei()) and 
+that the Interrupt Controller, if present, is configured so that 
+any interrupts are serviced correctly.
+
+
+\section doc_driver_usart_init_code Code example
+
+Not applicable for init drivers.
+
+*/

@@ -1,0 +1,1063 @@
+
+proto_attiny817_derbycon.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000004  00803e00  00000912  000009c6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000063a  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       000002d8  0000863a  0000063a  000006ee  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .bss          00000005  00803e04  00803e04  000009ca  2**0
+                  ALLOC
+  4 .comment      00000030  00000000  00000000  000009ca  2**0
+                  CONTENTS, READONLY
+  5 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000009fc  2**2
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000058  00000000  00000000  00000a38  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   0000209d  00000000  00000000  00000a90  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 0000180e  00000000  00000000  00002b2d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000637  00000000  00000000  0000433b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000104  00000000  00000000  00004974  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000eac  00000000  00000000  00004a78  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000006f8  00000000  00000000  00005924  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000048  00000000  00000000  0000601c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	33 c0       	rjmp	.+102    	; 0x6a <__bad_interrupt>
+   4:	32 c0       	rjmp	.+100    	; 0x6a <__bad_interrupt>
+   6:	31 c0       	rjmp	.+98     	; 0x6a <__bad_interrupt>
+   8:	30 c0       	rjmp	.+96     	; 0x6a <__bad_interrupt>
+   a:	2f c0       	rjmp	.+94     	; 0x6a <__bad_interrupt>
+   c:	2e c0       	rjmp	.+92     	; 0x6a <__bad_interrupt>
+   e:	2d c0       	rjmp	.+90     	; 0x6a <__bad_interrupt>
+  10:	2c c0       	rjmp	.+88     	; 0x6a <__bad_interrupt>
+  12:	2b c0       	rjmp	.+86     	; 0x6a <__bad_interrupt>
+  14:	2a c0       	rjmp	.+84     	; 0x6a <__bad_interrupt>
+  16:	29 c0       	rjmp	.+82     	; 0x6a <__bad_interrupt>
+  18:	28 c0       	rjmp	.+80     	; 0x6a <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__bad_interrupt>
+  1c:	26 c0       	rjmp	.+76     	; 0x6a <__bad_interrupt>
+  1e:	25 c0       	rjmp	.+74     	; 0x6a <__bad_interrupt>
+  20:	24 c0       	rjmp	.+72     	; 0x6a <__bad_interrupt>
+  22:	23 c0       	rjmp	.+70     	; 0x6a <__bad_interrupt>
+  24:	22 c0       	rjmp	.+68     	; 0x6a <__bad_interrupt>
+  26:	21 c0       	rjmp	.+66     	; 0x6a <__bad_interrupt>
+  28:	20 c0       	rjmp	.+64     	; 0x6a <__bad_interrupt>
+  2a:	1f c0       	rjmp	.+62     	; 0x6a <__bad_interrupt>
+  2c:	fa c0       	rjmp	.+500    	; 0x222 <__vector_22>
+  2e:	1d c0       	rjmp	.+58     	; 0x6a <__bad_interrupt>
+  30:	1c c0       	rjmp	.+56     	; 0x6a <__bad_interrupt>
+  32:	1b c0       	rjmp	.+54     	; 0x6a <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	cd bf       	out	0x3d, r28	; 61
+  3c:	df e3       	ldi	r29, 0x3F	; 63
+  3e:	de bf       	out	0x3e, r29	; 62
+
+00000040 <__do_copy_data>:
+  40:	1e e3       	ldi	r17, 0x3E	; 62
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	be e3       	ldi	r27, 0x3E	; 62
+  46:	e2 e1       	ldi	r30, 0x12	; 18
+  48:	f9 e0       	ldi	r31, 0x09	; 9
+  4a:	02 c0       	rjmp	.+4      	; 0x50 <__do_copy_data+0x10>
+  4c:	05 90       	lpm	r0, Z+
+  4e:	0d 92       	st	X+, r0
+  50:	a4 30       	cpi	r26, 0x04	; 4
+  52:	b1 07       	cpc	r27, r17
+  54:	d9 f7       	brne	.-10     	; 0x4c <__do_copy_data+0xc>
+
+00000056 <__do_clear_bss>:
+  56:	2e e3       	ldi	r18, 0x3E	; 62
+  58:	a4 e0       	ldi	r26, 0x04	; 4
+  5a:	be e3       	ldi	r27, 0x3E	; 62
+  5c:	01 c0       	rjmp	.+2      	; 0x60 <.do_clear_bss_start>
+
+0000005e <.do_clear_bss_loop>:
+  5e:	1d 92       	st	X+, r1
+
+00000060 <.do_clear_bss_start>:
+  60:	a9 30       	cpi	r26, 0x09	; 9
+  62:	b2 07       	cpc	r27, r18
+  64:	e1 f7       	brne	.-8      	; 0x5e <.do_clear_bss_loop>
+  66:	39 d1       	rcall	.+626    	; 0x2da <main>
+  68:	e6 c2       	rjmp	.+1484   	; 0x636 <_exit>
+
+0000006a <__bad_interrupt>:
+  6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
+
+0000006c <USART_Init>:
+			}
+	} else {send_msg(" U IZ DRUNK! Type h to get list of commands!", NEWLINE_ON);}
+}
+
+void USART_Init(void) {
+	USART0_CTRLB = USART_RXEN_bm | USART_TXEN_bm | USART_RXCIE_bm;
+  6c:	80 ec       	ldi	r24, 0xC0	; 192
+  6e:	80 93 06 08 	sts	0x0806, r24	; 0x800806 <__TEXT_REGION_LENGTH__+0x700806>
+	USART0_CTRLC = USART_CMODE_ASYNCHRONOUS_gc | USART_PMODE_DISABLED_gc | USART_CHSIZE_8BIT_gc;
+  72:	93 e0       	ldi	r25, 0x03	; 3
+  74:	90 93 07 08 	sts	0x0807, r25	; 0x800807 <__TEXT_REGION_LENGTH__+0x700807>
+	USART0_CTRLA = (1<<USART_RXCIE_bp)|(0<<USART_TXCIE_bp);
+  78:	90 e8       	ldi	r25, 0x80	; 128
+  7a:	90 93 05 08 	sts	0x0805, r25	; 0x800805 <__TEXT_REGION_LENGTH__+0x700805>
+	PORTB_DIRSET = (0<<PIN3_bp) | (1<<PIN2_bp);
+  7e:	94 e0       	ldi	r25, 0x04	; 4
+  80:	90 93 21 04 	sts	0x0421, r25	; 0x800421 <__TEXT_REGION_LENGTH__+0x700421>
+	USART0_BAUD = 1388;					//Calculate baud rate setting - BAUD = 64*CLK_PER/S*fBAUD = 64*3.33MHz/16*9600 = 1388 ~ i.e. Client connects at 9600 Baud over Serial
+  84:	2c e6       	ldi	r18, 0x6C	; 108
+  86:	35 e0       	ldi	r19, 0x05	; 5
+  88:	20 93 08 08 	sts	0x0808, r18	; 0x800808 <__TEXT_REGION_LENGTH__+0x700808>
+  8c:	30 93 09 08 	sts	0x0809, r19	; 0x800809 <__TEXT_REGION_LENGTH__+0x700809>
+	USART0_STATUS = USART_RXCIF_bm | USART_TXCIF_bm;
+  90:	80 93 04 08 	sts	0x0804, r24	; 0x800804 <__TEXT_REGION_LENGTH__+0x700804>
+  94:	08 95       	ret
+
+00000096 <USART_SendByte>:
+}
+
+void USART_SendByte(uint8_t u8Data) { 
+	// Send Character
+	USART0_TXDATAL = u8Data;
+  96:	80 93 02 08 	sts	0x0802, r24	; 0x800802 <__TEXT_REGION_LENGTH__+0x700802>
+	while((USART0_STATUS &(1<<USART_TXCIF_bp)) == 0);
+  9a:	e4 e0       	ldi	r30, 0x04	; 4
+  9c:	f8 e0       	ldi	r31, 0x08	; 8
+  9e:	80 81       	ld	r24, Z
+  a0:	86 ff       	sbrs	r24, 6
+  a2:	fd cf       	rjmp	.-6      	; 0x9e <USART_SendByte+0x8>
+	USART0_STATUS = (1<<USART_TXCIF_bp);			// clear flag
+  a4:	80 e4       	ldi	r24, 0x40	; 64
+  a6:	80 93 04 08 	sts	0x0804, r24	; 0x800804 <__TEXT_REGION_LENGTH__+0x700804>
+  aa:	08 95       	ret
+
+000000ac <send_msg>:
+}
+
+void send_msg(char msg[], char new_line) { 
+  ac:	df 92       	push	r13
+  ae:	ef 92       	push	r14
+  b0:	ff 92       	push	r15
+  b2:	0f 93       	push	r16
+  b4:	1f 93       	push	r17
+  b6:	cf 93       	push	r28
+  b8:	df 93       	push	r29
+  ba:	8c 01       	movw	r16, r24
+  bc:	d6 2e       	mov	r13, r22
+  be:	7c 01       	movw	r14, r24
+	for(int i = 0; i < strlen(msg); i++) {
+  c0:	c0 e0       	ldi	r28, 0x00	; 0
+  c2:	d0 e0       	ldi	r29, 0x00	; 0
+  c4:	05 c0       	rjmp	.+10     	; 0xd0 <send_msg+0x24>
+		USART_SendByte(msg[i]);			// send value
+  c6:	f7 01       	movw	r30, r14
+  c8:	81 91       	ld	r24, Z+
+  ca:	7f 01       	movw	r14, r30
+  cc:	e4 df       	rcall	.-56     	; 0x96 <USART_SendByte>
+	while((USART0_STATUS &(1<<USART_TXCIF_bp)) == 0);
+	USART0_STATUS = (1<<USART_TXCIF_bp);			// clear flag
+}
+
+void send_msg(char msg[], char new_line) { 
+	for(int i = 0; i < strlen(msg); i++) {
+  ce:	21 96       	adiw	r28, 0x01	; 1
+  d0:	f8 01       	movw	r30, r16
+  d2:	01 90       	ld	r0, Z+
+  d4:	00 20       	and	r0, r0
+  d6:	e9 f7       	brne	.-6      	; 0xd2 <send_msg+0x26>
+  d8:	31 97       	sbiw	r30, 0x01	; 1
+  da:	e0 1b       	sub	r30, r16
+  dc:	f1 0b       	sbc	r31, r17
+  de:	ce 17       	cp	r28, r30
+  e0:	df 07       	cpc	r29, r31
+  e2:	88 f3       	brcs	.-30     	; 0xc6 <send_msg+0x1a>
+		USART_SendByte(msg[i]);			// send value
+	}
+	if(new_line == ENABLE) {
+  e4:	f1 e0       	ldi	r31, 0x01	; 1
+  e6:	df 12       	cpse	r13, r31
+  e8:	08 c0       	rjmp	.+16     	; 0xfa <send_msg+0x4e>
+		USART_SendByte('\n');			// new line
+  ea:	8a e0       	ldi	r24, 0x0A	; 10
+  ec:	d4 df       	rcall	.-88     	; 0x96 <USART_SendByte>
+		USART_SendByte('\r');			// return	
+  ee:	8d e0       	ldi	r24, 0x0D	; 13
+  f0:	d2 df       	rcall	.-92     	; 0x96 <USART_SendByte>
+		USART_SendByte('\n');			// new line
+  f2:	8a e0       	ldi	r24, 0x0A	; 10
+  f4:	d0 df       	rcall	.-96     	; 0x96 <USART_SendByte>
+		USART_SendByte('\r');			// return	
+  f6:	8d e0       	ldi	r24, 0x0D	; 13
+  f8:	ce df       	rcall	.-100    	; 0x96 <USART_SendByte>
+	}
+}
+  fa:	df 91       	pop	r29
+  fc:	cf 91       	pop	r28
+  fe:	1f 91       	pop	r17
+ 100:	0f 91       	pop	r16
+ 102:	ff 90       	pop	r15
+ 104:	ef 90       	pop	r14
+ 106:	df 90       	pop	r13
+ 108:	08 95       	ret
+
+0000010a <check_cmd>:
+
+void save_state() {
+	//TODO this should save the STATE variable to internal flash such that there is persistence
+}
+
+void check_cmd(char msg[]) {
+ 10a:	fc 01       	movw	r30, r24
+	char cmd;
+	char chk_space;
+	cmd = msg[0];			// get first character
+ 10c:	90 81       	ld	r25, Z
+	chk_space = msg[1];		// get second character -should be space
+ 10e:	81 81       	ldd	r24, Z+1	; 0x01
+	
+	if((chk_space == ' ') || (cmd == 'h' || cmd == 'a' || cmd == 't')) {
+ 110:	80 32       	cpi	r24, 0x20	; 32
+ 112:	41 f0       	breq	.+16     	; 0x124 <check_cmd+0x1a>
+ 114:	98 36       	cpi	r25, 0x68	; 104
+ 116:	71 f0       	breq	.+28     	; 0x134 <check_cmd+0x2a>
+ 118:	91 36       	cpi	r25, 0x61	; 97
+ 11a:	91 f0       	breq	.+36     	; 0x140 <check_cmd+0x36>
+ 11c:	94 37       	cpi	r25, 0x74	; 116
+ 11e:	09 f0       	breq	.+2      	; 0x122 <check_cmd+0x18>
+ 120:	7a c0       	rjmp	.+244    	; 0x216 <check_cmd+0x10c>
+ 122:	14 c0       	rjmp	.+40     	; 0x14c <check_cmd+0x42>
+		switch(cmd)	{
+ 124:	98 36       	cpi	r25, 0x68	; 104
+ 126:	31 f0       	breq	.+12     	; 0x134 <check_cmd+0x2a>
+ 128:	94 37       	cpi	r25, 0x74	; 116
+ 12a:	81 f0       	breq	.+32     	; 0x14c <check_cmd+0x42>
+ 12c:	91 36       	cpi	r25, 0x61	; 97
+ 12e:	09 f0       	breq	.+2      	; 0x132 <check_cmd+0x28>
+ 130:	6c c0       	rjmp	.+216    	; 0x20a <check_cmd+0x100>
+ 132:	06 c0       	rjmp	.+12     	; 0x140 <check_cmd+0x36>
+			case 'h':		// Help
+				send_msg("\n\rAND!XOR DerbyCon VIII (2018) Trevor Badge \n\r h - Help (this menu) \n\r a - About \n\r t - Talk to Trevor", NEWLINE_ON);
+ 134:	61 e0       	ldi	r22, 0x01	; 1
+ 136:	70 e0       	ldi	r23, 0x00	; 0
+ 138:	8a e3       	ldi	r24, 0x3A	; 58
+ 13a:	96 e8       	ldi	r25, 0x86	; 134
+ 13c:	b7 df       	rcall	.-146    	; 0xac <send_msg>
+			break;
+ 13e:	08 95       	ret
+			
+			case 'a':		// About
+				send_msg(" A badge for our first (and hopefully not last) DerbyCon.\r\n Big thanks to April Wright for bringing us out here! We Heart You!", NEWLINE_ON);
+ 140:	61 e0       	ldi	r22, 0x01	; 1
+ 142:	70 e0       	ldi	r23, 0x00	; 0
+ 144:	81 ea       	ldi	r24, 0xA1	; 161
+ 146:	96 e8       	ldi	r25, 0x86	; 134
+ 148:	b1 df       	rcall	.-158    	; 0xac <send_msg>
+			break;
+ 14a:	08 95       	ret
+			
+			case 't':		// Talk to Trevor
+				if(STATE == 3){
+ 14c:	20 91 06 3e 	lds	r18, 0x3E06	; 0x803e06 <STATE>
+ 150:	30 91 07 3e 	lds	r19, 0x3E07	; 0x803e07 <STATE+0x1>
+ 154:	23 30       	cpi	r18, 0x03	; 3
+ 156:	31 05       	cpc	r19, r1
+ 158:	59 f4       	brne	.+22     	; 0x170 <check_cmd+0x66>
+					send_msg(" Yes. Your job is done. I can see the lights. All the blinky lights in the great beyond.\r\n", NEWLINE_OFF);
+ 15a:	60 e0       	ldi	r22, 0x00	; 0
+ 15c:	70 e0       	ldi	r23, 0x00	; 0
+ 15e:	80 e2       	ldi	r24, 0x20	; 32
+ 160:	97 e8       	ldi	r25, 0x87	; 135
+ 162:	a4 df       	rcall	.-184    	; 0xac <send_msg>
+					send_msg(" For your reward, go to: https://goo.gl/Vuu1XP", NEWLINE_ON);
+ 164:	61 e0       	ldi	r22, 0x01	; 1
+ 166:	70 e0       	ldi	r23, 0x00	; 0
+ 168:	8b e7       	ldi	r24, 0x7B	; 123
+ 16a:	97 e8       	ldi	r25, 0x87	; 135
+ 16c:	9f df       	rcall	.-194    	; 0xac <send_msg>
+ 16e:	08 95       	ret
+				}
+				else if(STATE == 2){
+ 170:	22 30       	cpi	r18, 0x02	; 2
+ 172:	31 05       	cpc	r19, r1
+ 174:	d9 f5       	brne	.+118    	; 0x1ec <check_cmd+0xe2>
+					if(chk_space != ' ') //just "t" was typed					
+ 176:	80 32       	cpi	r24, 0x20	; 32
+ 178:	31 f0       	breq	.+12     	; 0x186 <check_cmd+0x7c>
+						send_msg(" I am almost at peace...read me my last rights... (example: t SEKRETWORD)", NEWLINE_ON); 
+ 17a:	61 e0       	ldi	r22, 0x01	; 1
+ 17c:	70 e0       	ldi	r23, 0x00	; 0
+ 17e:	8a ea       	ldi	r24, 0xAA	; 170
+ 180:	97 e8       	ldi	r25, 0x87	; 135
+ 182:	94 df       	rcall	.-216    	; 0xac <send_msg>
+ 184:	08 95       	ret
+					else if(msg[2]=='s' && msg[3]=='m' && msg[4]=='a' && msg[5]=='s' && msg[6]=='h' && msg[7]=='b' && msg[8]=='u' && msg[9]=='r' && msg[10]=='g' && msg[11]=='e' && msg[12]=='r'){
+ 186:	82 81       	ldd	r24, Z+2	; 0x02
+ 188:	83 37       	cpi	r24, 0x73	; 115
+ 18a:	51 f5       	brne	.+84     	; 0x1e0 <check_cmd+0xd6>
+ 18c:	83 81       	ldd	r24, Z+3	; 0x03
+ 18e:	8d 36       	cpi	r24, 0x6D	; 109
+ 190:	39 f5       	brne	.+78     	; 0x1e0 <check_cmd+0xd6>
+ 192:	84 81       	ldd	r24, Z+4	; 0x04
+ 194:	81 36       	cpi	r24, 0x61	; 97
+ 196:	21 f5       	brne	.+72     	; 0x1e0 <check_cmd+0xd6>
+ 198:	85 81       	ldd	r24, Z+5	; 0x05
+ 19a:	83 37       	cpi	r24, 0x73	; 115
+ 19c:	09 f5       	brne	.+66     	; 0x1e0 <check_cmd+0xd6>
+ 19e:	86 81       	ldd	r24, Z+6	; 0x06
+ 1a0:	88 36       	cpi	r24, 0x68	; 104
+ 1a2:	f1 f4       	brne	.+60     	; 0x1e0 <check_cmd+0xd6>
+ 1a4:	87 81       	ldd	r24, Z+7	; 0x07
+ 1a6:	82 36       	cpi	r24, 0x62	; 98
+ 1a8:	d9 f4       	brne	.+54     	; 0x1e0 <check_cmd+0xd6>
+ 1aa:	80 85       	ldd	r24, Z+8	; 0x08
+ 1ac:	85 37       	cpi	r24, 0x75	; 117
+ 1ae:	c1 f4       	brne	.+48     	; 0x1e0 <check_cmd+0xd6>
+ 1b0:	81 85       	ldd	r24, Z+9	; 0x09
+ 1b2:	82 37       	cpi	r24, 0x72	; 114
+ 1b4:	a9 f4       	brne	.+42     	; 0x1e0 <check_cmd+0xd6>
+ 1b6:	82 85       	ldd	r24, Z+10	; 0x0a
+ 1b8:	87 36       	cpi	r24, 0x67	; 103
+ 1ba:	91 f4       	brne	.+36     	; 0x1e0 <check_cmd+0xd6>
+ 1bc:	83 85       	ldd	r24, Z+11	; 0x0b
+ 1be:	85 36       	cpi	r24, 0x65	; 101
+ 1c0:	79 f4       	brne	.+30     	; 0x1e0 <check_cmd+0xd6>
+ 1c2:	84 85       	ldd	r24, Z+12	; 0x0c
+ 1c4:	82 37       	cpi	r24, 0x72	; 114
+ 1c6:	61 f4       	brne	.+24     	; 0x1e0 <check_cmd+0xd6>
+						//Check input for the word "smashburger" which should have ROT8 (for Derbycon 8) "keskztmjywj" printed on the back of the badge
+						send_msg(" SMASHBURGER! Yes...that will do...if only...it were In N Out Burger.", NEWLINE_ON);
+ 1c8:	61 e0       	ldi	r22, 0x01	; 1
+ 1ca:	70 e0       	ldi	r23, 0x00	; 0
+ 1cc:	84 ef       	ldi	r24, 0xF4	; 244
+ 1ce:	97 e8       	ldi	r25, 0x87	; 135
+ 1d0:	6d df       	rcall	.-294    	; 0xac <send_msg>
+						STATE = 3; 
+ 1d2:	83 e0       	ldi	r24, 0x03	; 3
+ 1d4:	90 e0       	ldi	r25, 0x00	; 0
+ 1d6:	80 93 06 3e 	sts	0x3E06, r24	; 0x803e06 <STATE>
+ 1da:	90 93 07 3e 	sts	0x3E07, r25	; 0x803e07 <STATE+0x1>
+						save_state();
+ 1de:	08 95       	ret
+					}
+					else
+						send_msg(" I don't want that to be the last thing I hear!", NEWLINE_ON); 
+ 1e0:	61 e0       	ldi	r22, 0x01	; 1
+ 1e2:	70 e0       	ldi	r23, 0x00	; 0
+ 1e4:	8a e3       	ldi	r24, 0x3A	; 58
+ 1e6:	98 e8       	ldi	r25, 0x88	; 136
+ 1e8:	61 df       	rcall	.-318    	; 0xac <send_msg>
+ 1ea:	08 95       	ret
+				}
+				else if(STATE == 1){
+ 1ec:	21 30       	cpi	r18, 0x01	; 1
+ 1ee:	31 05       	cpc	r19, r1
+ 1f0:	31 f4       	brne	.+12     	; 0x1fe <check_cmd+0xf4>
+					send_msg(" ZOMG!!! MY FUCKING FOOT BURNZ! COOL IT DOWN! NEED...MILKSHAKE!!!", NEWLINE_ON); 
+ 1f2:	61 e0       	ldi	r22, 0x01	; 1
+ 1f4:	70 e0       	ldi	r23, 0x00	; 0
+ 1f6:	8a e6       	ldi	r24, 0x6A	; 106
+ 1f8:	98 e8       	ldi	r25, 0x88	; 136
+ 1fa:	58 df       	rcall	.-336    	; 0xac <send_msg>
+ 1fc:	08 95       	ret
+				}
+				else{// STATE == 0
+					send_msg(" OMG! MY FUCKING ARM HURTS! PLEASE CUT IT OFF!", NEWLINE_ON);			
+ 1fe:	61 e0       	ldi	r22, 0x01	; 1
+ 200:	70 e0       	ldi	r23, 0x00	; 0
+ 202:	8c ea       	ldi	r24, 0xAC	; 172
+ 204:	98 e8       	ldi	r25, 0x88	; 136
+ 206:	52 df       	rcall	.-348    	; 0xac <send_msg>
+ 208:	08 95       	ret
+				}
+			break;			
+			default:
+				send_msg(" U IZ DRUNK! Type h to get list of commands!", NEWLINE_ON);
+ 20a:	61 e0       	ldi	r22, 0x01	; 1
+ 20c:	70 e0       	ldi	r23, 0x00	; 0
+ 20e:	8b ed       	ldi	r24, 0xDB	; 219
+ 210:	98 e8       	ldi	r25, 0x88	; 136
+ 212:	4c df       	rcall	.-360    	; 0xac <send_msg>
+ 214:	08 95       	ret
+			}
+	} else {send_msg(" U IZ DRUNK! Type h to get list of commands!", NEWLINE_ON);}
+ 216:	61 e0       	ldi	r22, 0x01	; 1
+ 218:	70 e0       	ldi	r23, 0x00	; 0
+ 21a:	8b ed       	ldi	r24, 0xDB	; 219
+ 21c:	98 e8       	ldi	r25, 0x88	; 136
+ 21e:	46 df       	rcall	.-372    	; 0xac <send_msg>
+ 220:	08 95       	ret
+
+00000222 <__vector_22>:
+double FOOT_TEMP = 55.0; //THIS IS A PLACEHOLDER GLOBAL FOR THE TEMP UNTIL 816 INTEGRATION WITH THERMOMISTER
+int STATE = 0;	
+int x = 0;
+char msg_rx[];
+
+ISR(USART0_RXC_vect) { // This kicks off when any key is pressed
+ 222:	1f 92       	push	r1
+ 224:	0f 92       	push	r0
+ 226:	0f b6       	in	r0, 0x3f	; 63
+ 228:	0f 92       	push	r0
+ 22a:	11 24       	eor	r1, r1
+ 22c:	2f 93       	push	r18
+ 22e:	3f 93       	push	r19
+ 230:	4f 93       	push	r20
+ 232:	5f 93       	push	r21
+ 234:	6f 93       	push	r22
+ 236:	7f 93       	push	r23
+ 238:	8f 93       	push	r24
+ 23a:	9f 93       	push	r25
+ 23c:	af 93       	push	r26
+ 23e:	bf 93       	push	r27
+ 240:	cf 93       	push	r28
+ 242:	ef 93       	push	r30
+ 244:	ff 93       	push	r31
+	char value = 0;
+	value = USART0_RXDATAL;
+ 246:	c0 91 00 08 	lds	r28, 0x0800	; 0x800800 <__TEXT_REGION_LENGTH__+0x700800>
+	if(value != "")	{
+ 24a:	8c 2f       	mov	r24, r28
+ 24c:	90 e0       	ldi	r25, 0x00	; 0
+ 24e:	27 e8       	ldi	r18, 0x87	; 135
+ 250:	8a 37       	cpi	r24, 0x7A	; 122
+ 252:	92 07       	cpc	r25, r18
+ 254:	81 f1       	breq	.+96     	; 0x2b6 <__vector_22+0x94>
+		msg_rx[x] = value;
+ 256:	e0 91 04 3e 	lds	r30, 0x3E04	; 0x803e04 <__data_end>
+ 25a:	f0 91 05 3e 	lds	r31, 0x3E05	; 0x803e05 <__data_end+0x1>
+ 25e:	e8 5f       	subi	r30, 0xF8	; 248
+ 260:	f1 4c       	sbci	r31, 0xC1	; 193
+ 262:	c0 83       	st	Z, r28
+		USART_SendByte(msg_rx[x]);			//send back the character typed to display
+ 264:	18 df       	rcall	.-464    	; 0x96 <USART_SendByte>
+		if(value != 8 && value != 127)		// if backspace/delete is pressed,
+ 266:	c8 30       	cpi	r28, 0x08	; 8
+ 268:	61 f0       	breq	.+24     	; 0x282 <__vector_22+0x60>
+ 26a:	cf 37       	cpi	r28, 0x7F	; 127
+ 26c:	51 f0       	breq	.+20     	; 0x282 <__vector_22+0x60>
+		{ x++; } else
+ 26e:	80 91 04 3e 	lds	r24, 0x3E04	; 0x803e04 <__data_end>
+ 272:	90 91 05 3e 	lds	r25, 0x3E05	; 0x803e05 <__data_end+0x1>
+ 276:	01 96       	adiw	r24, 0x01	; 1
+ 278:	80 93 04 3e 	sts	0x3E04, r24	; 0x803e04 <__data_end>
+ 27c:	90 93 05 3e 	sts	0x3E05, r25	; 0x803e05 <__data_end+0x1>
+ 280:	09 c0       	rjmp	.+18     	; 0x294 <__vector_22+0x72>
+		{ x--; }				
+ 282:	80 91 04 3e 	lds	r24, 0x3E04	; 0x803e04 <__data_end>
+ 286:	90 91 05 3e 	lds	r25, 0x3E05	; 0x803e05 <__data_end+0x1>
+ 28a:	01 97       	sbiw	r24, 0x01	; 1
+ 28c:	80 93 04 3e 	sts	0x3E04, r24	; 0x803e04 <__data_end>
+ 290:	90 93 05 3e 	sts	0x3E05, r25	; 0x803e05 <__data_end+0x1>
+		if(value == '\r')					//if enter is pressed, process command
+ 294:	cd 30       	cpi	r28, 0x0D	; 13
+ 296:	79 f4       	brne	.+30     	; 0x2b6 <__vector_22+0x94>
+		{
+			USART_SendByte('\n');			// new line
+ 298:	8a e0       	ldi	r24, 0x0A	; 10
+ 29a:	90 e0       	ldi	r25, 0x00	; 0
+ 29c:	fc de       	rcall	.-520    	; 0x96 <USART_SendByte>
+			check_cmd(msg_rx);				// check for command request
+ 29e:	88 e0       	ldi	r24, 0x08	; 8
+ 2a0:	9e e3       	ldi	r25, 0x3E	; 62
+ 2a2:	33 df       	rcall	.-410    	; 0x10a <check_cmd>
+			x = 0;
+ 2a4:	10 92 04 3e 	sts	0x3E04, r1	; 0x803e04 <__data_end>
+ 2a8:	10 92 05 3e 	sts	0x3E05, r1	; 0x803e05 <__data_end+0x1>
+			send_msg("AND!XOR> ", NEWLINE_OFF); // add a command line prompt
+ 2ac:	60 e0       	ldi	r22, 0x00	; 0
+ 2ae:	70 e0       	ldi	r23, 0x00	; 0
+ 2b0:	88 e0       	ldi	r24, 0x08	; 8
+ 2b2:	99 e8       	ldi	r25, 0x89	; 137
+ 2b4:	fb de       	rcall	.-522    	; 0xac <send_msg>
+		}
+	}
+}
+ 2b6:	ff 91       	pop	r31
+ 2b8:	ef 91       	pop	r30
+ 2ba:	cf 91       	pop	r28
+ 2bc:	bf 91       	pop	r27
+ 2be:	af 91       	pop	r26
+ 2c0:	9f 91       	pop	r25
+ 2c2:	8f 91       	pop	r24
+ 2c4:	7f 91       	pop	r23
+ 2c6:	6f 91       	pop	r22
+ 2c8:	5f 91       	pop	r21
+ 2ca:	4f 91       	pop	r20
+ 2cc:	3f 91       	pop	r19
+ 2ce:	2f 91       	pop	r18
+ 2d0:	0f 90       	pop	r0
+ 2d2:	0f be       	out	0x3f, r0	; 63
+ 2d4:	0f 90       	pop	r0
+ 2d6:	1f 90       	pop	r1
+ 2d8:	18 95       	reti
+
+000002da <main>:
+		USART_SendByte('\r');			// return	
+	}
+}
+
+int main(void) {
+	USART_Init();					// Initialize USART
+ 2da:	c8 de       	rcall	.-624    	; 0x6c <USART_Init>
+	sei();							// Enable all interrupts
+ 2dc:	78 94       	sei
+	STATE = load_state();			// Load state from internal flash
+ 2de:	10 92 06 3e 	sts	0x3E06, r1	; 0x803e06 <STATE>
+ 2e2:	10 92 07 3e 	sts	0x3E07, r1	; 0x803e07 <STATE+0x1>
+	
+	//TODO Remove at integration - this is 817 development board specific
+	PORTC.DIRSET = PIN0_bm;			// Configure Yellow LED0 pin as output 
+ 2e6:	e0 e4       	ldi	r30, 0x40	; 64
+ 2e8:	f4 e0       	ldi	r31, 0x04	; 4
+ 2ea:	81 e0       	ldi	r24, 0x01	; 1
+ 2ec:	81 83       	std	Z+1, r24	; 0x01
+	PORTC.DIRCLR = PIN5_bm; 		// Configure SW0 User Button as input ~ THIS SIMULATE CUTTING THE TRACE
+ 2ee:	80 e2       	ldi	r24, 0x20	; 32
+ 2f0:	82 83       	std	Z+2, r24	; 0x02
+	
+    while (1) //USE THIS LOOP TO CONTROL LED COLORS AND CHECK FOR UNLOCKS (TRACE CUT, TEMPERATURE)
+    {	
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS SIMULATES THE TRACE BEING CUT
+		if ((!(PORTC.IN & (PIN5_bm)))&&(STATE==0)) {
+ 2f2:	c0 e4       	ldi	r28, 0x40	; 64
+ 2f4:	d4 e0       	ldi	r29, 0x04	; 4
+			_delay_ms(150);
+		}
+		else if (STATE == 2){
+			//STATE 2 IS FASTER AND USES JUST 2 COLORS - PURPLE FADE IN FADE OUT, THEN YELLOW FADE IN FADE OUT
+			//Trace has been cut, foot has been chilled, awaiting the secret word
+			PORTC.OUTSET = PIN0_bm; /* Yellow LED0 on */
+ 2f6:	11 e0       	ldi	r17, 0x01	; 1
+			//BUTTON IS BEING PUSHED
+			//THIS IS PERMANENT ONCE THIS VARIABLE IS SET WE DONT GO BACK
+			//THIS WILL DECREMENT TEMPERATURE BY 5 DEGREES EVERY PUSH TO SIMULATE COOLING
+			FOOT_TEMP -= 5.0;
+			if(FOOT_TEMP <= 35.0){
+				STATE = 2;				
+ 2f8:	68 94       	set
+ 2fa:	cc 24       	eor	r12, r12
+ 2fc:	c1 f8       	bld	r12, 1
+ 2fe:	d1 2c       	mov	r13, r1
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS SIMULATES THE TRACE BEING CUT
+		if ((!(PORTC.IN & (PIN5_bm)))&&(STATE==0)) {
+			//BUTTON IS BEING PUSHED
+			//THIS IS PERMANENT ONCE THIS VARIABLE IS SET WE DONT GO BACK
+			STATE = 1;
+ 300:	ee 24       	eor	r14, r14
+ 302:	e3 94       	inc	r14
+ 304:	f1 2c       	mov	r15, r1
+	
+    while (1) //USE THIS LOOP TO CONTROL LED COLORS AND CHECK FOR UNLOCKS (TRACE CUT, TEMPERATURE)
+    {	
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS SIMULATES THE TRACE BEING CUT
+		if ((!(PORTC.IN & (PIN5_bm)))&&(STATE==0)) {
+ 306:	88 85       	ldd	r24, Y+8	; 0x08
+ 308:	85 fd       	sbrc	r24, 5
+ 30a:	0f c0       	rjmp	.+30     	; 0x32a <main+0x50>
+ 30c:	80 91 06 3e 	lds	r24, 0x3E06	; 0x803e06 <STATE>
+ 310:	90 91 07 3e 	lds	r25, 0x3E07	; 0x803e07 <STATE+0x1>
+ 314:	00 97       	sbiw	r24, 0x00	; 0
+ 316:	09 f0       	breq	.+2      	; 0x31a <main+0x40>
+ 318:	93 c0       	rjmp	.+294    	; 0x440 <__LOCK_REGION_LENGTH__+0x40>
+			//BUTTON IS BEING PUSHED
+			//THIS IS PERMANENT ONCE THIS VARIABLE IS SET WE DONT GO BACK
+			STATE = 1;
+ 31a:	e0 92 06 3e 	sts	0x3E06, r14	; 0x803e06 <STATE>
+ 31e:	f0 92 07 3e 	sts	0x3E07, r15	; 0x803e07 <STATE+0x1>
+			save_state();
+		}
+		
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS SIMULATES THE TERMPERATURE CHECK
+		if ((!(PORTC.IN & (PIN5_bm)))&&(STATE==1)) {
+ 322:	88 85       	ldd	r24, Y+8	; 0x08
+ 324:	85 ff       	sbrs	r24, 5
+ 326:	0c c0       	rjmp	.+24     	; 0x340 <main+0x66>
+ 328:	9a c0       	rjmp	.+308    	; 0x45e <__LOCK_REGION_LENGTH__+0x5e>
+ 32a:	88 85       	ldd	r24, Y+8	; 0x08
+ 32c:	85 fd       	sbrc	r24, 5
+ 32e:	29 c0       	rjmp	.+82     	; 0x382 <main+0xa8>
+ 330:	80 91 06 3e 	lds	r24, 0x3E06	; 0x803e06 <STATE>
+ 334:	90 91 07 3e 	lds	r25, 0x3E07	; 0x803e07 <STATE+0x1>
+ 338:	81 30       	cpi	r24, 0x01	; 1
+ 33a:	91 05       	cpc	r25, r1
+ 33c:	09 f0       	breq	.+2      	; 0x340 <main+0x66>
+ 33e:	84 c0       	rjmp	.+264    	; 0x448 <__LOCK_REGION_LENGTH__+0x48>
+			//BUTTON IS BEING PUSHED
+			//THIS IS PERMANENT ONCE THIS VARIABLE IS SET WE DONT GO BACK
+			//THIS WILL DECREMENT TEMPERATURE BY 5 DEGREES EVERY PUSH TO SIMULATE COOLING
+			FOOT_TEMP -= 5.0;
+ 340:	20 e0       	ldi	r18, 0x00	; 0
+ 342:	30 e0       	ldi	r19, 0x00	; 0
+ 344:	40 ea       	ldi	r20, 0xA0	; 160
+ 346:	50 e4       	ldi	r21, 0x40	; 64
+ 348:	60 91 00 3e 	lds	r22, 0x3E00	; 0x803e00 <FOOT_TEMP>
+ 34c:	70 91 01 3e 	lds	r23, 0x3E01	; 0x803e01 <FOOT_TEMP+0x1>
+ 350:	80 91 02 3e 	lds	r24, 0x3E02	; 0x803e02 <FOOT_TEMP+0x2>
+ 354:	90 91 03 3e 	lds	r25, 0x3E03	; 0x803e03 <FOOT_TEMP+0x3>
+ 358:	87 d0       	rcall	.+270    	; 0x468 <__subsf3>
+ 35a:	60 93 00 3e 	sts	0x3E00, r22	; 0x803e00 <FOOT_TEMP>
+ 35e:	70 93 01 3e 	sts	0x3E01, r23	; 0x803e01 <FOOT_TEMP+0x1>
+ 362:	80 93 02 3e 	sts	0x3E02, r24	; 0x803e02 <FOOT_TEMP+0x2>
+ 366:	90 93 03 3e 	sts	0x3E03, r25	; 0x803e03 <FOOT_TEMP+0x3>
+			if(FOOT_TEMP <= 35.0){
+ 36a:	20 e0       	ldi	r18, 0x00	; 0
+ 36c:	30 e0       	ldi	r19, 0x00	; 0
+ 36e:	4c e0       	ldi	r20, 0x0C	; 12
+ 370:	52 e4       	ldi	r21, 0x42	; 66
+ 372:	e7 d0       	rcall	.+462    	; 0x542 <__cmpsf2>
+ 374:	18 16       	cp	r1, r24
+ 376:	1c f1       	brlt	.+70     	; 0x3be <main+0xe4>
+				STATE = 2;				
+ 378:	c0 92 06 3e 	sts	0x3E06, r12	; 0x803e06 <STATE>
+ 37c:	d0 92 07 3e 	sts	0x3E07, r13	; 0x803e07 <STATE+0x1>
+ 380:	35 c0       	rjmp	.+106    	; 0x3ec <main+0x112>
+		//Note: Check and modification for state 3 is handled through terminal logic
+
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS IS MY BLING THE UBER YELLOW LED		
+		//IDEA IS EACH STATE HAS VASTLY DIFFERENT RGB BLINKS SO WE CAN TELL WHO HAS DONE WHAT BY LOOKING AT THEM
+		if (STATE == 0){
+ 382:	80 91 06 3e 	lds	r24, 0x3E06	; 0x803e06 <STATE>
+ 386:	90 91 07 3e 	lds	r25, 0x3E07	; 0x803e07 <STATE+0x1>
+ 38a:	00 97       	sbiw	r24, 0x00	; 0
+ 38c:	a9 f4       	brne	.+42     	; 0x3b8 <main+0xde>
+			//STATE 0 IS SLOW AND POSSIBLY JUST 2 COLORS - RED FADE IN FADE OUT, THEN ORANGE FADE IN FADE OUT
+			//Nothing has happened yet awaiting the trace to be cut
+			PORTC.OUTSET = PIN0_bm; /* Yellow LED0 on */
+ 38e:	1d 83       	std	Y+5, r17	; 0x05
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 390:	2f e7       	ldi	r18, 0x7F	; 127
+ 392:	84 e8       	ldi	r24, 0x84	; 132
+ 394:	9e e1       	ldi	r25, 0x1E	; 30
+ 396:	21 50       	subi	r18, 0x01	; 1
+ 398:	80 40       	sbci	r24, 0x00	; 0
+ 39a:	90 40       	sbci	r25, 0x00	; 0
+ 39c:	e1 f7       	brne	.-8      	; 0x396 <main+0xbc>
+ 39e:	00 c0       	rjmp	.+0      	; 0x3a0 <main+0xc6>
+ 3a0:	00 00       	nop
+			_delay_ms(500);
+			PORTC.OUTCLR = PIN0_bm; /* Yellow LED0 off */
+ 3a2:	1e 83       	std	Y+6, r17	; 0x06
+ 3a4:	2f e7       	ldi	r18, 0x7F	; 127
+ 3a6:	84 e8       	ldi	r24, 0x84	; 132
+ 3a8:	9e e1       	ldi	r25, 0x1E	; 30
+ 3aa:	21 50       	subi	r18, 0x01	; 1
+ 3ac:	80 40       	sbci	r24, 0x00	; 0
+ 3ae:	90 40       	sbci	r25, 0x00	; 0
+ 3b0:	e1 f7       	brne	.-8      	; 0x3aa <main+0xd0>
+ 3b2:	00 c0       	rjmp	.+0      	; 0x3b4 <main+0xda>
+ 3b4:	00 00       	nop
+ 3b6:	a7 cf       	rjmp	.-178    	; 0x306 <main+0x2c>
+			_delay_ms(500);			
+		}
+		else if (STATE == 1){
+ 3b8:	81 30       	cpi	r24, 0x01	; 1
+ 3ba:	91 05       	cpc	r25, r1
+ 3bc:	a9 f4       	brne	.+42     	; 0x3e8 <main+0x10e>
+			//STATE 1 IS FASTER AND USES JUST 2 COLORS - BLUE FADE IN FADE OUT, THEN GREEN FADE IN FADE OUT
+			//Trace has been cut, awaiting the foot to be chilled
+			PORTC.OUTSET = PIN0_bm; /* Yellow LED0 on */
+ 3be:	1d 83       	std	Y+5, r17	; 0x05
+ 3c0:	2f eb       	ldi	r18, 0xBF	; 191
+ 3c2:	87 e2       	ldi	r24, 0x27	; 39
+ 3c4:	99 e0       	ldi	r25, 0x09	; 9
+ 3c6:	21 50       	subi	r18, 0x01	; 1
+ 3c8:	80 40       	sbci	r24, 0x00	; 0
+ 3ca:	90 40       	sbci	r25, 0x00	; 0
+ 3cc:	e1 f7       	brne	.-8      	; 0x3c6 <main+0xec>
+ 3ce:	00 c0       	rjmp	.+0      	; 0x3d0 <main+0xf6>
+ 3d0:	00 00       	nop
+			_delay_ms(150);
+			PORTC.OUTCLR = PIN0_bm; /* Yellow LED0 off */
+ 3d2:	1e 83       	std	Y+6, r17	; 0x06
+ 3d4:	2f eb       	ldi	r18, 0xBF	; 191
+ 3d6:	87 e2       	ldi	r24, 0x27	; 39
+ 3d8:	99 e0       	ldi	r25, 0x09	; 9
+ 3da:	21 50       	subi	r18, 0x01	; 1
+ 3dc:	80 40       	sbci	r24, 0x00	; 0
+ 3de:	90 40       	sbci	r25, 0x00	; 0
+ 3e0:	e1 f7       	brne	.-8      	; 0x3da <main+0x100>
+ 3e2:	00 c0       	rjmp	.+0      	; 0x3e4 <main+0x10a>
+ 3e4:	00 00       	nop
+ 3e6:	8f cf       	rjmp	.-226    	; 0x306 <main+0x2c>
+			_delay_ms(150);
+		}
+		else if (STATE == 2){
+ 3e8:	02 97       	sbiw	r24, 0x02	; 2
+ 3ea:	a9 f4       	brne	.+42     	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+			//STATE 2 IS FASTER AND USES JUST 2 COLORS - PURPLE FADE IN FADE OUT, THEN YELLOW FADE IN FADE OUT
+			//Trace has been cut, foot has been chilled, awaiting the secret word
+			PORTC.OUTSET = PIN0_bm; /* Yellow LED0 on */
+ 3ec:	1d 83       	std	Y+5, r17	; 0x05
+ 3ee:	2f ed       	ldi	r18, 0xDF	; 223
+ 3f0:	83 e9       	ldi	r24, 0x93	; 147
+ 3f2:	94 e0       	ldi	r25, 0x04	; 4
+ 3f4:	21 50       	subi	r18, 0x01	; 1
+ 3f6:	80 40       	sbci	r24, 0x00	; 0
+ 3f8:	90 40       	sbci	r25, 0x00	; 0
+ 3fa:	e1 f7       	brne	.-8      	; 0x3f4 <main+0x11a>
+ 3fc:	00 c0       	rjmp	.+0      	; 0x3fe <main+0x124>
+ 3fe:	00 00       	nop
+			_delay_ms(75);
+			PORTC.OUTCLR = PIN0_bm; /* Yellow LED0 off */
+ 400:	1e 83       	std	Y+6, r17	; 0x06
+ 402:	2f ed       	ldi	r18, 0xDF	; 223
+ 404:	83 e9       	ldi	r24, 0x93	; 147
+ 406:	94 e0       	ldi	r25, 0x04	; 4
+ 408:	21 50       	subi	r18, 0x01	; 1
+ 40a:	80 40       	sbci	r24, 0x00	; 0
+ 40c:	90 40       	sbci	r25, 0x00	; 0
+ 40e:	e1 f7       	brne	.-8      	; 0x408 <__LOCK_REGION_LENGTH__+0x8>
+ 410:	00 c0       	rjmp	.+0      	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
+ 412:	00 00       	nop
+ 414:	78 cf       	rjmp	.-272    	; 0x306 <main+0x2c>
+			_delay_ms(75);
+		}
+		else {//STATE == 3
+			//STATE 3 IS FASTEST WITH RAINBOW RGB CYCLE
+			//Everything has been completed
+			PORTC.OUTSET = PIN0_bm; /* Yellow LED0 on */
+ 416:	1d 83       	std	Y+5, r17	; 0x05
+ 418:	2f e9       	ldi	r18, 0x9F	; 159
+ 41a:	86 e8       	ldi	r24, 0x86	; 134
+ 41c:	91 e0       	ldi	r25, 0x01	; 1
+ 41e:	21 50       	subi	r18, 0x01	; 1
+ 420:	80 40       	sbci	r24, 0x00	; 0
+ 422:	90 40       	sbci	r25, 0x00	; 0
+ 424:	e1 f7       	brne	.-8      	; 0x41e <__LOCK_REGION_LENGTH__+0x1e>
+ 426:	00 c0       	rjmp	.+0      	; 0x428 <__LOCK_REGION_LENGTH__+0x28>
+ 428:	00 00       	nop
+			_delay_ms(25);
+			PORTC.OUTCLR = PIN0_bm; /* Yellow LED0 off */
+ 42a:	1e 83       	std	Y+6, r17	; 0x06
+ 42c:	2f e9       	ldi	r18, 0x9F	; 159
+ 42e:	86 e8       	ldi	r24, 0x86	; 134
+ 430:	91 e0       	ldi	r25, 0x01	; 1
+ 432:	21 50       	subi	r18, 0x01	; 1
+ 434:	80 40       	sbci	r24, 0x00	; 0
+ 436:	90 40       	sbci	r25, 0x00	; 0
+ 438:	e1 f7       	brne	.-8      	; 0x432 <__LOCK_REGION_LENGTH__+0x32>
+ 43a:	00 c0       	rjmp	.+0      	; 0x43c <__LOCK_REGION_LENGTH__+0x3c>
+ 43c:	00 00       	nop
+ 43e:	63 cf       	rjmp	.-314    	; 0x306 <main+0x2c>
+			save_state();
+		}
+		
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS SIMULATES THE TERMPERATURE CHECK
+		if ((!(PORTC.IN & (PIN5_bm)))&&(STATE==1)) {
+ 440:	28 85       	ldd	r18, Y+8	; 0x08
+ 442:	25 fd       	sbrc	r18, 5
+ 444:	b9 cf       	rjmp	.-142    	; 0x3b8 <main+0xde>
+ 446:	03 c0       	rjmp	.+6      	; 0x44e <__LOCK_REGION_LENGTH__+0x4e>
+		//Note: Check and modification for state 3 is handled through terminal logic
+
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS IS MY BLING THE UBER YELLOW LED		
+		//IDEA IS EACH STATE HAS VASTLY DIFFERENT RGB BLINKS SO WE CAN TELL WHO HAS DONE WHAT BY LOOKING AT THEM
+		if (STATE == 0){
+ 448:	00 97       	sbiw	r24, 0x00	; 0
+ 44a:	71 f6       	brne	.-100    	; 0x3e8 <main+0x10e>
+ 44c:	a0 cf       	rjmp	.-192    	; 0x38e <main+0xb4>
+			save_state();
+		}
+		
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS SIMULATES THE TERMPERATURE CHECK
+		if ((!(PORTC.IN & (PIN5_bm)))&&(STATE==1)) {
+ 44e:	80 91 06 3e 	lds	r24, 0x3E06	; 0x803e06 <STATE>
+ 452:	90 91 07 3e 	lds	r25, 0x3E07	; 0x803e07 <STATE+0x1>
+ 456:	81 30       	cpi	r24, 0x01	; 1
+ 458:	91 05       	cpc	r25, r1
+ 45a:	31 f6       	brne	.-116    	; 0x3e8 <main+0x10e>
+ 45c:	71 cf       	rjmp	.-286    	; 0x340 <main+0x66>
+		//Note: Check and modification for state 3 is handled through terminal logic
+
+		//TODO Modify at integration - this is 817 development board specific
+		//THIS IS MY BLING THE UBER YELLOW LED		
+		//IDEA IS EACH STATE HAS VASTLY DIFFERENT RGB BLINKS SO WE CAN TELL WHO HAS DONE WHAT BY LOOKING AT THEM
+		if (STATE == 0){
+ 45e:	80 91 06 3e 	lds	r24, 0x3E06	; 0x803e06 <STATE>
+ 462:	90 91 07 3e 	lds	r25, 0x3E07	; 0x803e07 <STATE+0x1>
+ 466:	a8 cf       	rjmp	.-176    	; 0x3b8 <main+0xde>
+
+00000468 <__subsf3>:
+ 468:	50 58       	subi	r21, 0x80	; 128
+
+0000046a <__addsf3>:
+ 46a:	bb 27       	eor	r27, r27
+ 46c:	aa 27       	eor	r26, r26
+ 46e:	0e 94 4c 02 	call	0x498	; 0x498 <__addsf3x>
+ 472:	0c 94 e1 02 	jmp	0x5c2	; 0x5c2 <__fp_round>
+ 476:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <__fp_pscA>
+ 47a:	38 f0       	brcs	.+14     	; 0x48a <__addsf3+0x20>
+ 47c:	0e 94 da 02 	call	0x5b4	; 0x5b4 <__fp_pscB>
+ 480:	20 f0       	brcs	.+8      	; 0x48a <__addsf3+0x20>
+ 482:	39 f4       	brne	.+14     	; 0x492 <__addsf3+0x28>
+ 484:	9f 3f       	cpi	r25, 0xFF	; 255
+ 486:	19 f4       	brne	.+6      	; 0x48e <__addsf3+0x24>
+ 488:	26 f4       	brtc	.+8      	; 0x492 <__addsf3+0x28>
+ 48a:	0c 94 d0 02 	jmp	0x5a0	; 0x5a0 <__fp_nan>
+ 48e:	0e f4       	brtc	.+2      	; 0x492 <__addsf3+0x28>
+ 490:	e0 95       	com	r30
+ 492:	e7 fb       	bst	r30, 7
+ 494:	0c 94 ca 02 	jmp	0x594	; 0x594 <__fp_inf>
+
+00000498 <__addsf3x>:
+ 498:	e9 2f       	mov	r30, r25
+ 49a:	0e 94 f2 02 	call	0x5e4	; 0x5e4 <__fp_split3>
+ 49e:	58 f3       	brcs	.-42     	; 0x476 <__addsf3+0xc>
+ 4a0:	ba 17       	cp	r27, r26
+ 4a2:	62 07       	cpc	r22, r18
+ 4a4:	73 07       	cpc	r23, r19
+ 4a6:	84 07       	cpc	r24, r20
+ 4a8:	95 07       	cpc	r25, r21
+ 4aa:	20 f0       	brcs	.+8      	; 0x4b4 <__addsf3x+0x1c>
+ 4ac:	79 f4       	brne	.+30     	; 0x4cc <__addsf3x+0x34>
+ 4ae:	a6 f5       	brtc	.+104    	; 0x518 <__addsf3x+0x80>
+ 4b0:	0c 94 14 03 	jmp	0x628	; 0x628 <__fp_zero>
+ 4b4:	0e f4       	brtc	.+2      	; 0x4b8 <__addsf3x+0x20>
+ 4b6:	e0 95       	com	r30
+ 4b8:	0b 2e       	mov	r0, r27
+ 4ba:	ba 2f       	mov	r27, r26
+ 4bc:	a0 2d       	mov	r26, r0
+ 4be:	0b 01       	movw	r0, r22
+ 4c0:	b9 01       	movw	r22, r18
+ 4c2:	90 01       	movw	r18, r0
+ 4c4:	0c 01       	movw	r0, r24
+ 4c6:	ca 01       	movw	r24, r20
+ 4c8:	a0 01       	movw	r20, r0
+ 4ca:	11 24       	eor	r1, r1
+ 4cc:	ff 27       	eor	r31, r31
+ 4ce:	59 1b       	sub	r21, r25
+ 4d0:	99 f0       	breq	.+38     	; 0x4f8 <__addsf3x+0x60>
+ 4d2:	59 3f       	cpi	r21, 0xF9	; 249
+ 4d4:	50 f4       	brcc	.+20     	; 0x4ea <__addsf3x+0x52>
+ 4d6:	50 3e       	cpi	r21, 0xE0	; 224
+ 4d8:	68 f1       	brcs	.+90     	; 0x534 <__addsf3x+0x9c>
+ 4da:	1a 16       	cp	r1, r26
+ 4dc:	f0 40       	sbci	r31, 0x00	; 0
+ 4de:	a2 2f       	mov	r26, r18
+ 4e0:	23 2f       	mov	r18, r19
+ 4e2:	34 2f       	mov	r19, r20
+ 4e4:	44 27       	eor	r20, r20
+ 4e6:	58 5f       	subi	r21, 0xF8	; 248
+ 4e8:	f3 cf       	rjmp	.-26     	; 0x4d0 <__addsf3x+0x38>
+ 4ea:	46 95       	lsr	r20
+ 4ec:	37 95       	ror	r19
+ 4ee:	27 95       	ror	r18
+ 4f0:	a7 95       	ror	r26
+ 4f2:	f0 40       	sbci	r31, 0x00	; 0
+ 4f4:	53 95       	inc	r21
+ 4f6:	c9 f7       	brne	.-14     	; 0x4ea <__addsf3x+0x52>
+ 4f8:	7e f4       	brtc	.+30     	; 0x518 <__addsf3x+0x80>
+ 4fa:	1f 16       	cp	r1, r31
+ 4fc:	ba 0b       	sbc	r27, r26
+ 4fe:	62 0b       	sbc	r22, r18
+ 500:	73 0b       	sbc	r23, r19
+ 502:	84 0b       	sbc	r24, r20
+ 504:	ba f0       	brmi	.+46     	; 0x534 <__addsf3x+0x9c>
+ 506:	91 50       	subi	r25, 0x01	; 1
+ 508:	a1 f0       	breq	.+40     	; 0x532 <__addsf3x+0x9a>
+ 50a:	ff 0f       	add	r31, r31
+ 50c:	bb 1f       	adc	r27, r27
+ 50e:	66 1f       	adc	r22, r22
+ 510:	77 1f       	adc	r23, r23
+ 512:	88 1f       	adc	r24, r24
+ 514:	c2 f7       	brpl	.-16     	; 0x506 <__addsf3x+0x6e>
+ 516:	0e c0       	rjmp	.+28     	; 0x534 <__addsf3x+0x9c>
+ 518:	ba 0f       	add	r27, r26
+ 51a:	62 1f       	adc	r22, r18
+ 51c:	73 1f       	adc	r23, r19
+ 51e:	84 1f       	adc	r24, r20
+ 520:	48 f4       	brcc	.+18     	; 0x534 <__addsf3x+0x9c>
+ 522:	87 95       	ror	r24
+ 524:	77 95       	ror	r23
+ 526:	67 95       	ror	r22
+ 528:	b7 95       	ror	r27
+ 52a:	f7 95       	ror	r31
+ 52c:	9e 3f       	cpi	r25, 0xFE	; 254
+ 52e:	08 f0       	brcs	.+2      	; 0x532 <__addsf3x+0x9a>
+ 530:	b0 cf       	rjmp	.-160    	; 0x492 <__addsf3+0x28>
+ 532:	93 95       	inc	r25
+ 534:	88 0f       	add	r24, r24
+ 536:	08 f0       	brcs	.+2      	; 0x53a <__addsf3x+0xa2>
+ 538:	99 27       	eor	r25, r25
+ 53a:	ee 0f       	add	r30, r30
+ 53c:	97 95       	ror	r25
+ 53e:	87 95       	ror	r24
+ 540:	08 95       	ret
+
+00000542 <__cmpsf2>:
+ 542:	0e 94 a6 02 	call	0x54c	; 0x54c <__fp_cmp>
+ 546:	08 f4       	brcc	.+2      	; 0x54a <__cmpsf2+0x8>
+ 548:	81 e0       	ldi	r24, 0x01	; 1
+ 54a:	08 95       	ret
+
+0000054c <__fp_cmp>:
+ 54c:	99 0f       	add	r25, r25
+ 54e:	00 08       	sbc	r0, r0
+ 550:	55 0f       	add	r21, r21
+ 552:	aa 0b       	sbc	r26, r26
+ 554:	e0 e8       	ldi	r30, 0x80	; 128
+ 556:	fe ef       	ldi	r31, 0xFE	; 254
+ 558:	16 16       	cp	r1, r22
+ 55a:	17 06       	cpc	r1, r23
+ 55c:	e8 07       	cpc	r30, r24
+ 55e:	f9 07       	cpc	r31, r25
+ 560:	c0 f0       	brcs	.+48     	; 0x592 <__fp_cmp+0x46>
+ 562:	12 16       	cp	r1, r18
+ 564:	13 06       	cpc	r1, r19
+ 566:	e4 07       	cpc	r30, r20
+ 568:	f5 07       	cpc	r31, r21
+ 56a:	98 f0       	brcs	.+38     	; 0x592 <__fp_cmp+0x46>
+ 56c:	62 1b       	sub	r22, r18
+ 56e:	73 0b       	sbc	r23, r19
+ 570:	84 0b       	sbc	r24, r20
+ 572:	95 0b       	sbc	r25, r21
+ 574:	39 f4       	brne	.+14     	; 0x584 <__fp_cmp+0x38>
+ 576:	0a 26       	eor	r0, r26
+ 578:	61 f0       	breq	.+24     	; 0x592 <__fp_cmp+0x46>
+ 57a:	23 2b       	or	r18, r19
+ 57c:	24 2b       	or	r18, r20
+ 57e:	25 2b       	or	r18, r21
+ 580:	21 f4       	brne	.+8      	; 0x58a <__fp_cmp+0x3e>
+ 582:	08 95       	ret
+ 584:	0a 26       	eor	r0, r26
+ 586:	09 f4       	brne	.+2      	; 0x58a <__fp_cmp+0x3e>
+ 588:	a1 40       	sbci	r26, 0x01	; 1
+ 58a:	a6 95       	lsr	r26
+ 58c:	8f ef       	ldi	r24, 0xFF	; 255
+ 58e:	81 1d       	adc	r24, r1
+ 590:	81 1d       	adc	r24, r1
+ 592:	08 95       	ret
+
+00000594 <__fp_inf>:
+ 594:	97 f9       	bld	r25, 7
+ 596:	9f 67       	ori	r25, 0x7F	; 127
+ 598:	80 e8       	ldi	r24, 0x80	; 128
+ 59a:	70 e0       	ldi	r23, 0x00	; 0
+ 59c:	60 e0       	ldi	r22, 0x00	; 0
+ 59e:	08 95       	ret
+
+000005a0 <__fp_nan>:
+ 5a0:	9f ef       	ldi	r25, 0xFF	; 255
+ 5a2:	80 ec       	ldi	r24, 0xC0	; 192
+ 5a4:	08 95       	ret
+
+000005a6 <__fp_pscA>:
+ 5a6:	00 24       	eor	r0, r0
+ 5a8:	0a 94       	dec	r0
+ 5aa:	16 16       	cp	r1, r22
+ 5ac:	17 06       	cpc	r1, r23
+ 5ae:	18 06       	cpc	r1, r24
+ 5b0:	09 06       	cpc	r0, r25
+ 5b2:	08 95       	ret
+
+000005b4 <__fp_pscB>:
+ 5b4:	00 24       	eor	r0, r0
+ 5b6:	0a 94       	dec	r0
+ 5b8:	12 16       	cp	r1, r18
+ 5ba:	13 06       	cpc	r1, r19
+ 5bc:	14 06       	cpc	r1, r20
+ 5be:	05 06       	cpc	r0, r21
+ 5c0:	08 95       	ret
+
+000005c2 <__fp_round>:
+ 5c2:	09 2e       	mov	r0, r25
+ 5c4:	03 94       	inc	r0
+ 5c6:	00 0c       	add	r0, r0
+ 5c8:	11 f4       	brne	.+4      	; 0x5ce <__fp_round+0xc>
+ 5ca:	88 23       	and	r24, r24
+ 5cc:	52 f0       	brmi	.+20     	; 0x5e2 <__fp_round+0x20>
+ 5ce:	bb 0f       	add	r27, r27
+ 5d0:	40 f4       	brcc	.+16     	; 0x5e2 <__fp_round+0x20>
+ 5d2:	bf 2b       	or	r27, r31
+ 5d4:	11 f4       	brne	.+4      	; 0x5da <__fp_round+0x18>
+ 5d6:	60 ff       	sbrs	r22, 0
+ 5d8:	04 c0       	rjmp	.+8      	; 0x5e2 <__fp_round+0x20>
+ 5da:	6f 5f       	subi	r22, 0xFF	; 255
+ 5dc:	7f 4f       	sbci	r23, 0xFF	; 255
+ 5de:	8f 4f       	sbci	r24, 0xFF	; 255
+ 5e0:	9f 4f       	sbci	r25, 0xFF	; 255
+ 5e2:	08 95       	ret
+
+000005e4 <__fp_split3>:
+ 5e4:	57 fd       	sbrc	r21, 7
+ 5e6:	90 58       	subi	r25, 0x80	; 128
+ 5e8:	44 0f       	add	r20, r20
+ 5ea:	55 1f       	adc	r21, r21
+ 5ec:	59 f0       	breq	.+22     	; 0x604 <__fp_splitA+0x10>
+ 5ee:	5f 3f       	cpi	r21, 0xFF	; 255
+ 5f0:	71 f0       	breq	.+28     	; 0x60e <__fp_splitA+0x1a>
+ 5f2:	47 95       	ror	r20
+
+000005f4 <__fp_splitA>:
+ 5f4:	88 0f       	add	r24, r24
+ 5f6:	97 fb       	bst	r25, 7
+ 5f8:	99 1f       	adc	r25, r25
+ 5fa:	61 f0       	breq	.+24     	; 0x614 <__fp_splitA+0x20>
+ 5fc:	9f 3f       	cpi	r25, 0xFF	; 255
+ 5fe:	79 f0       	breq	.+30     	; 0x61e <__fp_splitA+0x2a>
+ 600:	87 95       	ror	r24
+ 602:	08 95       	ret
+ 604:	12 16       	cp	r1, r18
+ 606:	13 06       	cpc	r1, r19
+ 608:	14 06       	cpc	r1, r20
+ 60a:	55 1f       	adc	r21, r21
+ 60c:	f2 cf       	rjmp	.-28     	; 0x5f2 <__fp_split3+0xe>
+ 60e:	46 95       	lsr	r20
+ 610:	f1 df       	rcall	.-30     	; 0x5f4 <__fp_splitA>
+ 612:	08 c0       	rjmp	.+16     	; 0x624 <__fp_splitA+0x30>
+ 614:	16 16       	cp	r1, r22
+ 616:	17 06       	cpc	r1, r23
+ 618:	18 06       	cpc	r1, r24
+ 61a:	99 1f       	adc	r25, r25
+ 61c:	f1 cf       	rjmp	.-30     	; 0x600 <__fp_splitA+0xc>
+ 61e:	86 95       	lsr	r24
+ 620:	71 05       	cpc	r23, r1
+ 622:	61 05       	cpc	r22, r1
+ 624:	08 94       	sec
+ 626:	08 95       	ret
+
+00000628 <__fp_zero>:
+ 628:	e8 94       	clt
+
+0000062a <__fp_szero>:
+ 62a:	bb 27       	eor	r27, r27
+ 62c:	66 27       	eor	r22, r22
+ 62e:	77 27       	eor	r23, r23
+ 630:	cb 01       	movw	r24, r22
+ 632:	97 f9       	bld	r25, 7
+ 634:	08 95       	ret
+
+00000636 <_exit>:
+ 636:	f8 94       	cli
+
+00000638 <__stop_program>:
+ 638:	ff cf       	rjmp	.-2      	; 0x638 <__stop_program>

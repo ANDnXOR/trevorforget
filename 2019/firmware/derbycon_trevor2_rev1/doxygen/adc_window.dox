@@ -1,0 +1,183 @@
+/*------------------------------------------------------------------------*/ /**
+\addtogroup doc_driver_adc_window ADC Window Driver
+ 
+\brief Driver for window ADC functionality.
+
+The ADC Window driver provides window functionality for using the ADC. 
+The driver has the following features:
+- The driver provides both single shot and continous/triggered conversions
+- Both windowed and non-windowed operation of the ADC is possible
+- If the ADC hardware supports using multiple resolutions, 
+the conversion is done using the resolution specified by the user in START. 
+
+The ADC Window driver has two modes of operation:
+- Polled mode
+- Interrupt mode
+
+The driver can also use both modes in the same application, e.g.
+- The ADC can normally be triggered by an external source, executing 
+  an ISR if the conversion result is inside/outside a specified window
+- The user can halt this auto-triggered mode, and perform a manual conversion
+  on a specified channel, and restarting the auto-triggered mode when the 
+  manually triggered conversion is done.
+
+
+\section doc_driver_adc_window_polled Polled mode
+
+In the Polled Mode, the application code explicitly starts a conversion 
+on a specified channel, waits for the conversion to complete, and 
+reads back the result. The result can be either as a conversion value or 
+as a boolean inside/outside window, depending on the configuration.
+
+
+\section doc_driver_adc_window_interrupt Interrupt mode
+
+In the Interrupt Mode, the application code or auto trigger source explicitly 
+starts a conversion on a specified channel. When the conversion is done:
+- the ADC Conversion Done ISR is executed if enabled
+- the ADC Window ISR is executed if enabled and the conversion result meets 
+  the window criteria .
+
+The user can hookup a callbacks to these ISRs, specifying any actions to be 
+performed by the ISR, such as reading the result, performing arithmetic on it,
+and storing it to a buffer. To generate code for including callback handler(s),
+tick the "Include harness for IRQ on conversion complete"- box and/or the 
+"Include harness for IRQ on conversion satisfying window criteria" in START.
+
+
+\section doc_driver_adc_window_functional Functional Description
+
+A manually triggered ADC conversion is started by calling 
+<component_name>_start_conversion(adc_channel_t channel).
+A conversion will then be started in the ADC, and the result will be ready 
+after a number of clock cycles. The function 
+<component_name>_is_conversion_done() is used
+to poll if the result is ready. When the result is ready, it can be read
+using <component_name>_get_conversion_result(). The function 
+<component_name>_get_conversion(adc_channel_t channel) combines all these 
+operations into a single function: Start conversion, wait, and read result.
+
+ADC conversion results are returned as datatype adc_result_t, which 
+has 16 bits. The data is right-adjusted, and the number of bits used
+is dependent on the resolution of the ADC, or the chosen resolution if 
+the ADC supports multiple resolutions. The function 
+<component_name>_get_resolution() returns the number of bits in the 
+result, and can be used to adjust or scale the result if needed.
+
+THe ADC can be configured to trigger conversions automatically,
+typically by an event from the event system. This auto-triggering
+is enabled/disabled by <component_name>_enable_autotrigger() and
+<component_name>_disable_autotrigger(). The functions:
+
+- <component_name>_set_window_high(adc_result_t high);
+- <component_name>_set_window_low(adc_result_t low);
+- <component_name>_set_window_mode(adc_window_mode_t mode);
+- <component_name>_set_window_channel(adc_channel_t channel);
+
+are used to configure windowing mode.
+
+If the applicatin wishes to mix auto- and manual triggering, 
+<component_name>_disable_autotrigger() should be called before 
+any manually triggered operation, e.g. by 
+<component_name>_get_conversion(). Thereafter, 
+<component_name>_set_window_channel() and 
+<component_name>_enable_autotrigger() can be called to resume auto-triggered 
+operation. Depending on the interrupt configuration done in START,
+the manually triggered conversion may trigger a Conversion Done interrupt.
+
+\section doc_driver_adc_window_hardware Hardware Dependencies
+
+The ADC Window driver needs ADC hardware to perform conversions.
+When the user has selected a device and added an ADC component, 
+the Driver field in the Component Settings pane in START will 
+let the user select which timer driver to use, select *Drivers:ADC:Window* 
+to use the ADC Window driver.
+
+The Configuration Pane in START will display options that are 
+dependent on the hardware used to implement the ADC driver.
+For example, an option may allow changing the number of result bits 
+or clock prescaling used to drive the underlying ADC hardware.
+
+
+\section doc_driver_adc_window_software Software Dependencies
+
+The ADC Window may be configured to use use the interrupt functionality 
+of the underlying ADC. Make sure that global interrupts 
+are enabled (using sei()) and that the Interrupt Controller, if 
+present, is configured so that the ADC interrupt is serviced 
+correctly.
+
+
+\section doc_driver_adc_window_code Code example
+
+\code
+#include <atmel_start.h>
+#include <atomic.h>
+
+volatile bool complete_isr_executed = false;
+volatile bool window_isr_executed = false;
+volatile adc_result_t measurement;
+volatile uint8_t measurement_normalized;
+
+void adc_complete_handler_cb(void){
+	measurement = ADC_0_get_conversion_result();
+	measurement_normalized = measurement>>(ADC_0_get_resolution()-8);
+	complete_isr_executed = true;
+}
+
+void adc_window_handler_cb(void){
+	window_isr_executed = true;
+}
+
+
+int main(void)
+{
+	/* Initializes MCU, drivers and middleware */
+	atmel_start_init();
+
+	DISABLE_INTERRUPTS();
+
+	// Test manually triggered mode
+	
+	// Disable auto-triggering if it is enabled
+	ADC_0_disable_autotrigger();
+
+	// Disable window_mode if it is enabled
+    ADC_0_set_window_mode(adc_window_disabled);
+
+
+
+	// Get conversion from ADC CH0
+	measurement = ADC_0_get_conversion(0);
+
+	// Get 8 MSB of conversion result
+	measurement_normalized = measurement>>(ADC_0_get_resolution()-8);
+
+	// Test auto-triggered mode
+
+	ENABLE_INTERRUPTS();
+
+	ADC_0_register_complete_callback(ADC_0_adc_complete_cb);
+
+	ADC_0_register_window_callback(ADC_0_adc_window_cb);
+
+	// Enable window_mode
+    ADC_0_set_window_mode(adc_window_inside);
+
+	// Setup ADC channel 3 to be used for auto-triggered conversions
+    ADC_0_set_window_channel(3);
+
+	// Enable auto-triggering
+    ADC_0_enable_autotrigger();
+
+	// Wait for ISR to be execued
+	while (!ADC_0_complete_isr_executed);
+	
+	while (1);
+}
+\endcode
+
+
+*/
+
+
